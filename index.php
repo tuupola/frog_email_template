@@ -16,7 +16,7 @@ Plugin::setInfos(array(
     'id'          => 'email_template',
     'title'       => 'Email template', 
     'description' => 'Provides mailer backend to your forms.', 
-    'version'     => '0.1.0',
+    'version'     => '0.2.0',
     'update_url'  => 'http://www.appelsiini.net/download/frog-plugins.xml',
     'website'     => 'http://www.appelsiini.net/'
 ));
