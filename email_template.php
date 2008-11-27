@@ -18,16 +18,14 @@ class Email_template {
     public function __construct(&$page, $params) {
         $this->page   = &$page;
         $this->params = $params;
-      
         if ($status = $this->send()) {
             /* Redirect to success URL. */
             if (trim($_POST['success'])) {
                 header('Location: ' . $_POST['success']);
             } else {
                 /* Or display the mail which was sent. Usefull for debugging. */
-                print '<pre>';
-                print htmlentities($this->content());
-                print '</pre>';
+                print '<pre>' . htmlentities($this->content()) . '</pre>';
+                die();
             }
         } else {
             /* Redirect failure URL. */
