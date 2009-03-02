@@ -3,7 +3,7 @@
 /*
  * Email Template - Frog CMS behaviour
  *
- * Copyright (c) 2008 Mika Tuupola
+ * Copyright (c) 2008-2009 Mika Tuupola
  *
  * Licensed under the MIT license:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -20,8 +20,8 @@ class Email_template {
         $this->params = $params;
         if ($status = $this->send()) {
             /* Redirect to success URL. */
-            if (trim($_POST['success'])) {
-                header('Location: ' . $_POST['success']);
+            if (@trim($_POST['success'])) {
+                header('Location: ' . $_POST['success']);                
             } else {
                 /* Or display the mail which was sent. Usefull for debugging. */
                 print '<pre>' . htmlentities($this->content()) . '</pre>';
@@ -29,7 +29,7 @@ class Email_template {
             }
         } else {
             /* Redirect failure URL. */
-            if (trim($_POST['failure'])) {
+            if (@trim($_POST['failure'])) {
                 header('Location: ' . $_POST['failure']);
             } else {
                 /* Or dump of status. */
@@ -76,7 +76,7 @@ class Email_template {
         /* First line which is not format "Name: Data" will assume end of headers. */
         foreach($line_array as $line) {
             $data = split(':', $line);
-            if (trim($data[1])) {
+            if (@trim($data[1])) {
                 $retval[trim($data[0])] = trim($data[1]);                
             } else {
                 break;
